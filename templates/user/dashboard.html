@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% block head %}<link rel="stylesheet" href="/static/css/dash.css"/>{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+<div class="container">
+  <h1 class="text-center">Dashboard <small style="color:#000000"><br/> Welcome {{session.first_name}}</small></h1>
+  <hr>
+  <h3> <small style="color:#000000"> Groups Created: {{c1}}<a class="btn btn-success" style="float: right;"href="/create_group"> Add Group</a></small></h3>
+    <table class="table">
+      <tr class='table-theme'>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for g in group %}
+      <tr>
+        <td><a href="/group/{{ g.group_id }}">{{g.name}}</a></td>
+        <td>{{g.creator}}</td>
+        <td>{{g.createdate}}</td>
+        <td><a href="edit_group/{{ g.group_id }}" class="btn btn-default pull-right">Edit</a></td>
+
+      </tr>
+    {% endfor %}
+  </table>
+
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+  <div class="jumbotron text-center">
+    <h1>Welcome {{session.first_name}} {{session.last_name}}</h1>
+    <p class="lead">Homepage <small> {{mes}} </small></p>
+    {% if session.logged_in == NULL %}
+      <a href="/register" class="btn btn-primary btn-lg">Register</a>
+      <a href="/login" class="btn btn-success btn-lg">Login</a>
+
+    {% endif %}
+  </div>
+  <div class="container">
+    <h1 class="text-center">Users in DB <small style="color:#000000"><br/> Welcome {{session.first_name}}</small></h1>
+    <hr>
+    <h3> <small style="color:#000000"> <a class="btn btn-primary" style="float: right;"href="/create_group"> Add Post</a></small></h3>
+      <table class="table">
+        <tr class='table-theme'>
+          <th>ID</th>
+          <th>First</th>
+          <th>Last</th>
+          <th>Email</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for v in value %}
+        <tr>
+          <td><a href="/profile/{{ v.user_id }}">{{v.user_id}}</a></td>
+          <td>{{v.first_name}}</td>
+          <td>{{v.last_name}}</td>
+          <td>{{v.email}}</td>
+          <td><a href="edit_profile/{{ v.user_id }}" class="btn btn-default pull-right">Edit</a></td>
+
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+
+<div class="container">
+  <h1>Are you Sure?</h1>
+  <h2><small style="color:#000000">You will not be able to log in after this is complete.</small></h2>
+  <p>Thanks For Using PostIt {{session.first_name}}</p>
+  <h3>Session Expires In: <span id="countdown">30</span> seconds.</h3>
+  
+
+  <script type="text/javascript">
+
+      // Total seconds to wait
+      var seconds = 30;
+
+      function countdown() {
+          seconds = seconds - 1;
+          if (seconds < 0) {
+              // Chnage your redirection link here
+              window.location = "/";
+          } else {
+              // Update remaining seconds
+              document.getElementById("countdown").innerHTML = seconds;
+              // Count down using javascript
+              window.setTimeout("countdown()", 1000);
+          }
+      }
+
+      // Run countdown function
+      countdown();
+
+  </script>
+
+
+</div>
+
+{% endblock %}

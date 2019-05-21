@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block head %}<link rel="stylesheet" href="static/css/dash.css"/>{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+
+<div class="container">
+  <h1>Dashboard <small style="color:#000000"> Welcome {{session.first_name}}</small></h1>
+	<p>{{message}}</p>
+  <a class="btn btn-primary" href="/add_admin"> Add Admin</a>
+	<hr>
+  <h3> <small style="color:#000000">Accounts Watching</small></h3>
+    <table class="table table-hover">
+      <tr class='info'>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Violations</th>
+				<th>Profile Pic</th>
+        <th></th>
+				<th></th>
+      </tr>
+      {% for u in users %}
+      <tr>
+				<td><a href="/profile/{{ u.user_id }}" style="color:#0033cc">{{u.user_id}}</a></td>
+        <td><a href="/profile/{{ u.user_id }}" style="color:#0033cc">{{u.first_name}} {{u.last_name}}</a></td>
+        <td>{{u.email}}</td>
+        <td>{{u.community_violations}}</td>
+				<td>{{u.profile_pic_path}}</td>
+        <td><a href="edit_priv/{{ u.user_id }}" class="btn btn-default pull-right">Edit Priv.</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+  </div>
+
+
+
+{% endblock %}
